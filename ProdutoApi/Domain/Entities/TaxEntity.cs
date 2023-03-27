@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace ProdutoApi.Domain.Entities
+﻿namespace ProdutoApi.Domain.Entities
 {
     public class TaxEntity : Entity
     {
@@ -11,5 +9,7 @@ namespace ProdutoApi.Domain.Entities
         {
             return Value != 0;
         }
+
+        public void UpdateValue(double value) => Value = value;
     }
 }

@@ -9,5 +9,7 @@
         {
             return !string.IsNullOrEmpty(Description);
         }
+
+        public void UpdateDescription(string descripition) => Description = descripition;
     }
 }

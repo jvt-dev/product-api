@@ -15,6 +15,22 @@ namespace ProdutoApi.Infraestructure.Extensions
             services.AddTransient<CreateMeasurementCommandHandler>();
             services.AddTransient<CreateProductTypeCommandHandler>();
             services.AddTransient<CreateProductCommandHandler>();
+            services.AddTransient<UpdateTaxCommandHandler>();
+            services.AddTransient<UpdateMeasurementCommandHandler>();
+            services.AddTransient<UpdateProductCommandHandler>();
+            services.AddTransient<UpdateProductTypeCommandHandler>();
+            services.AddTransient<DeleteTaxCommandHandler>();
+            services.AddTransient<DeleteMeasurementCommandHandler>();
+            services.AddTransient<DeleteProductCommandHandler>();
+            services.AddTransient<DeleteProductTypeCommandHandler>();
+            services.AddTransient<GetSingleTaxCommandHandler>();
+            services.AddTransient<GetSingleMeasurementCommandHandler>();
+            services.AddTransient<GetSingleProductCommandHandler>();
+            services.AddTransient<GetSingleProductTypeCommandHandler>();
+            services.AddTransient<GetAllTaxCommandHandler>();
+            services.AddTransient<GetAllProductCommandHandler>();
+            services.AddTransient<GetAllProductTypeCommandHandler>();
+            services.AddTransient<GetAllMeasurementCommandHandler>();
 
             return services;
         }

@@ -6,7 +6,7 @@
         public string Message { get; private set; }
         public object Data { get; private set; }
 
-        public RequestResult Ok(object data)
+        public RequestResult Ok(object data = null)
         {
             StatusCode = 200;
             Message = "Success";

@@ -9,8 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddServices();
-builder.Services.AddDbContext<ProductContext>(
-                options => options.UseNpgsql(builder.Configuration.GetConnectionString("DataBase")));
+builder.Services.AddDatabaseContext(builder.Configuration);
 
 var app = builder.Build();
 app.UseSwagger();

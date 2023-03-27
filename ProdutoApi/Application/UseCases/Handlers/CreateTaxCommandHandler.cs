@@ -27,7 +27,7 @@ namespace ProdutoApi.Application.UseCases.Handlers
 
                 if (!taxEntity.IsValid)
                 {
-                    return requestResult.BadRequest("Inform a valid value");
+                    return requestResult.BadRequest("Inform a valid tax value");
                 }
 
                 await _taxRepository.Add(taxEntity);

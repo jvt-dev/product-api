@@ -27,7 +27,7 @@ namespace ProdutoApi.Application.UseCases.Handlers
 
                 if (!productEntity.IsValid)
                 {
-                    return requestResult.BadRequest("Inform a valid value");
+                    return requestResult.BadRequest("Inform a valid quantity and product id");
                 }
 
                 await _productRepository.Add(productEntity);

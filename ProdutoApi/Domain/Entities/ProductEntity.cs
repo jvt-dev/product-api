@@ -1,11 +1,16 @@
-﻿namespace ProdutoApi.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ProdutoApi.Domain.Entities
 {
     public class ProductEntity : Entity
     {
-        public int Quantity { get; private set; }
-        public ProductTypeEntity ProductType { get; private set; }
+        public int Quantity { get; private set; }        
         public double FinalPrice => SetFinalPrice();
         public bool IsValid => Validate();
+
+        [ForeignKey("ProductTypeId")]
+        public ProductTypeEntity ProductType { get; private set; }
+
 
         private double SetFinalPrice()
         {
@@ -15,6 +20,11 @@
         private bool Validate()
         {
             return Quantity != 0 && ProductType?.Id != 0;
+        }
+
+        public void UpdateQuantity(int quantity)
+        {
+            Quantity = quantity;
         }
     }
 }

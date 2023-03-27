@@ -27,7 +27,7 @@ namespace ProdutoApi.Application.UseCases.Handlers
 
                 if (!measurementsEntity.IsValid)
                 {
-                    return requestResult.BadRequest("Inform a valid value");
+                    return requestResult.BadRequest("Inform a valid description");
                 }
 
                 await _measurementsRepository.Add(measurementsEntity);
