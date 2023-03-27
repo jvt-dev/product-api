@@ -31,6 +31,7 @@ namespace ProdutoApi.Infraestructure.Extensions
             services.AddTransient<GetAllProductCommandHandler>();
             services.AddTransient<GetAllProductTypeCommandHandler>();
             services.AddTransient<GetAllMeasurementCommandHandler>();
+            services.AddTransient<GetAllProductsWithStockCommandHandler>();
 
             return services;
         }

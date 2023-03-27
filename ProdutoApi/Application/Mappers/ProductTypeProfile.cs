@@ -9,8 +9,8 @@ namespace ProdutoApi.Application.Mappers
         public ProductTypeProfile()
         {
             CreateMap<CreateProductTypeCommand, ProductTypeEntity>()
-                .ForPath(dest => dest.Tax.Id, opt => opt.MapFrom(src => src.TaxId))
-                .ForPath(dest => dest.Measurements.Id, opt => opt.MapFrom(src => src.MeasurementsId))
+                .ForMember(dest => dest.TaxId, opt => opt.MapFrom(src => src.TaxId))
+                .ForMember(dest => dest.MeasurementsId, opt => opt.MapFrom(src => src.MeasurementsId))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
                 .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
                 .ForMember(dest => dest.MeasurementValue, opt => opt.MapFrom(src => src.MeasurementValue));

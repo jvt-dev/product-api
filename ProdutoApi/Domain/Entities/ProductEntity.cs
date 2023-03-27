@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ProdutoApi.Domain.Entities
 {
@@ -6,11 +7,14 @@ namespace ProdutoApi.Domain.Entities
     {
         public int Quantity { get; private set; }        
         public double FinalPrice => SetFinalPrice();
-        public bool IsValid => Validate();
 
+        [JsonIgnore]
+        public long ProductTypeId { get; private set; }
         [ForeignKey("ProductTypeId")]
-        public ProductTypeEntity ProductType { get; private set; }
+        public ProductTypeEntity? ProductType { get; private set; }
 
+        [JsonIgnore]
+        public bool IsValid => Validate();
 
         private double SetFinalPrice()
         {
@@ -19,12 +23,22 @@ namespace ProdutoApi.Domain.Entities
 
         private bool Validate()
         {
-            return Quantity != 0 && ProductType?.Id != 0;
+            return ProductType?.Id != 0;
         }
 
         public void UpdateQuantity(int quantity)
         {
             Quantity = quantity;
+        }
+
+        public bool HasStock()
+        {
+            return Quantity > 0;
+        }
+
+        public bool ValidateFinalPriceValue()
+        {
+            return FinalPrice >= 100 && FinalPrice <= 500;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ProdutoApi.Domain.Entities
 {
@@ -7,12 +8,19 @@ namespace ProdutoApi.Domain.Entities
         public string Description { get; private set; }
         public double MeasurementValue { get; private set; }
         public double Price { get; private set; }
-        public bool IsValid => Validate();
 
+        [JsonIgnore]
+        public long MeasurementsId { get; private set; }
         [ForeignKey("MeasurementsId")]
-        public MeasurementsEntity Measurements { get; private set; }
+        public MeasurementsEntity? Measurements { get; private set; }
+
+        [JsonIgnore]
+        public long TaxId { get; private set; }
         [ForeignKey("TaxId")]
-        public TaxEntity Tax { get; private set; }
+        public TaxEntity? Tax { get; private set; }
+
+        [JsonIgnore]
+        public bool IsValid => Validate();
 
         private bool Validate()
         {

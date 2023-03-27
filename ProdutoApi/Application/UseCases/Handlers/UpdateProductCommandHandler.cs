@@ -28,11 +28,6 @@ namespace ProdutoApi.Application.UseCases.Handlers
 
                 entity.UpdateQuantity(command.Quantity);
 
-                if (!entity.IsValid)
-                {
-                    return requestResult.BadRequest("Inform a valid quantity");
-                }
-
                 await _productRepository.Update(entity);
 
                 return requestResult.Ok(entity);

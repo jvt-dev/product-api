@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace ProdutoApi.Domain.Entities
+﻿namespace ProdutoApi.Domain.Entities
 {
     public abstract class Entity
     {
