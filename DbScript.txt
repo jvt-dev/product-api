@@ -1,0 +1,65 @@
+CREATE TABLE IF NOT EXISTS public."Measurements"
+(
+    "Id" integer NOT NULL DEFAULT 'nextval('"Measurements_Id_seq"'::regclass)',
+    "Description" character varying(22) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "Measurements_pkey" PRIMARY KEY ("Id")
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public."Measurements"
+    OWNER to postgres;
+
+CREATE TABLE IF NOT EXISTS public."Tax"
+(
+    "Id" integer NOT NULL DEFAULT 'nextval('"Tax_Id_seq"'::regclass)',
+    "Value" numeric NOT NULL,
+    CONSTRAINT "Tax_pkey" PRIMARY KEY ("Id")
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public."Tax"
+    OWNER to postgres;
+
+CREATE TABLE IF NOT EXISTS public."ProductType"
+(
+    "Id" integer NOT NULL DEFAULT 'nextval('"ProductType_Id_seq"'::regclass)',
+    "MeasurementsId" integer NOT NULL DEFAULT 'nextval('"ProductType_MeasurementsId_seq"'::regclass)',
+    "TaxId" integer NOT NULL DEFAULT 'nextval('"ProductType_TaxId_seq"'::regclass)',
+    "MeasurementValue" numeric NOT NULL,
+    "Price" numeric NOT NULL,
+    "Description" character varying(200) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "ProductType_pkey" PRIMARY KEY ("Id"),
+    CONSTRAINT "MeasurementsId" FOREIGN KEY ("MeasurementsId")
+        REFERENCES public."Measurements" ("Id") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT "TaxId" FOREIGN KEY ("TaxId")
+        REFERENCES public."Tax" ("Id") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public."ProductType"
+    OWNER to postgres;
+
+CREATE TABLE IF NOT EXISTS public."Product"
+(
+    "Id" integer NOT NULL DEFAULT 'nextval('"Product_Id_seq"'::regclass)',
+    "Quantity" integer NOT NULL,
+    "ProductTypeId" integer NOT NULL DEFAULT 'nextval('"Product_ProductTypeId_seq"'::regclass)',
+    CONSTRAINT "ProductTypeId" FOREIGN KEY ("ProductTypeId")
+        REFERENCES public."ProductType" ("Id") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public."Product"
+    OWNER to postgres;
